@@ -1,5 +1,7 @@
 const express = require("express");
 
+const pool = require("./db");
+
 const routes = [
     require("./routes/user.route")
 ];

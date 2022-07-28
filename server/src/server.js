@@ -1,6 +1,5 @@
 const express = require("express");
-
-const pool = require("./db");
+const cookieParser = require('cookie-parser');
 
 const routes = [
     require("./routes/user.route")
@@ -15,6 +14,7 @@ class Server {
     }
 
     initConfig() {
+        this.app.use(cookieParser());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
     }

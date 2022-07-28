@@ -6,7 +6,7 @@ class UserService {
     async create(userRequest) {
         const usersFound = await userRepository.findByEmail(userRequest.email);
         if (usersFound.length > 0) {
-            throw new Error("Email already exists");
+            throw new Error("Email already in use");
         }
 
         const hashedPassword = await bcrypt.hash(userRequest.password, 10);

@@ -4,8 +4,8 @@ const userRepository = require("../repository/user.repository");
 
 class UserService {
     async create(userRequest) {
-        const userFound = await userRepository.findByEmail(userRequest.email);
-        if (userFound.length > 0) {
+        const usersFound = await userRepository.findByEmail(userRequest.email);
+        if (usersFound.length > 0) {
             throw new Error("Email already exists");
         }
 

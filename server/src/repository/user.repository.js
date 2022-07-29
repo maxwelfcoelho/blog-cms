@@ -8,8 +8,15 @@ class UserRepository {
     }
 
     async create(user) {
-        const query = "INSERT INTO user (email, password, createdAt, updatedAt) VALUES (?, ?, ?, ?)";
-        const values = [user.email, user.password, user.createdAt, user.updatedAt];
+        const query = "INSERT INTO user (firstname, lastname, email, password, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)";
+        const values = [
+            user.firstName,
+            user.lastName,
+            user.email, 
+            user.password, 
+            user.createdAt, 
+            user.updatedAt
+        ];
         return await pool.query(query, values);
     }
 

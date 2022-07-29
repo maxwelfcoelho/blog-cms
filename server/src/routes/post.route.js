@@ -4,11 +4,13 @@ const { body } = require("express-validator");
 const router = Router();
 
 const postController = require("../controllers/post.controller");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get("/api/v1/posts", postController.findAllPosts);
 
 router.post(
-    "/api/v1/posts/new", 
+    "/api/v1/posts/new",
+    authMiddleware,
     body("title")
         .notEmpty()
         .withMessage("Title is required")

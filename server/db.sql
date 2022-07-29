@@ -8,3 +8,12 @@ CREATE TABLE user (
     updatedAt DATETIME,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE post (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(150) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    createdAt DATETIME,
+    updatedAt DATETIME,
+    PRIMARY KEY(id)
+);

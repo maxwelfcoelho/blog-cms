@@ -8,12 +8,13 @@ class PostRepository {
     }
 
     async create(post) {
-        const query = "INSERT INTO post (title, content, createdAt, updatedAt) VALUES (?, ?, ?, ?)";
+        const query = "INSERT INTO post (title, content, createdAt, updatedAt, userId) VALUES (?, ?, ?, ?, ?)";
         const values = [
             post.title, 
             post.content, 
             post.createdAt, 
-            post.updatedAt
+            post.updatedAt,
+            post.userId
         ];
         return await pool.query(query, values);
     }

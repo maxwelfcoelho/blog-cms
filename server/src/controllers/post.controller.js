@@ -22,7 +22,8 @@ class PostController {
         try {
             await postService.createPost({
                 title,
-                content
+                content,
+                userId: req.user.id
             });
 
             res.sendStatus(201);

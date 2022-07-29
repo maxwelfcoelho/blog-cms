@@ -10,7 +10,8 @@ class PostService {
             title: postRequest.title,
             content: postRequest.content,
             createdAt: new Date(),
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            userId: postRequest.userId
         };
 
         const newPost = await postRepository.create(post);

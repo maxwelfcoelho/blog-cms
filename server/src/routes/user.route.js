@@ -7,8 +7,10 @@ const router = Router();
 
 router.post(
     "/api/v1/register",
-    body('email').isEmail().withMessage("Not a valid email"),
-    body('password')
+    body("firstName").notEmpty().withMessage("First name is required"),
+    body("lastName").notEmpty().withMessage("Last name is required"),
+    body("email").isEmail().withMessage("Not a valid email"),
+    body("password")
         .isLength({ min: 8 })
         .withMessage("Password should be at least 8 characters"),
     userController.register
@@ -16,8 +18,8 @@ router.post(
 
 router.post(
     "/api/v1/login",
-    body('email').isEmail().withMessage("Not a valid email"),
-    body('password')
+    body("email").isEmail().withMessage("Not a valid email"),
+    body("password")
         .isLength({ min: 8 })
         .withMessage("Password should be at least 8 characters"),
     userController.login

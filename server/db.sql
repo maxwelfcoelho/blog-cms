@@ -1,7 +1,9 @@
 CREATE TABLE user (
-    id bigint NOT NULL AUTO_INCREMENT,
-    email varchar(200) NOT NULL UNIQUE,
-    password varchar(200) NOT NULL,
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL,
     createdAt DATETIME,
     updatedAt DATETIME,
     PRIMARY KEY(id)

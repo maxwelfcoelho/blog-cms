@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userRepository = require("../repository/user.repository");
 
@@ -19,6 +20,31 @@ class UserService {
         };
 
         return await userRepository.create(user);
+    }
+
+    async login(userRequest) {
+        const foundUsers = await userRepository.findByEmail(userRequest.email);
+        if (foundUsers.length < 1) {
+            throw new Error("Email or password does not match");
+        }
+
+        const foundUser = foundUsers[0];
+
+        const arePasswordsEqual = await bcrypt
+            .compare(userRequest.password, foundUser.password);
+
+        if (!arePasswordsEqual) {
+            throw new Error("Email or password does not match");
+        }
+
+        const token = await jwt.sign({
+            data: {
+                id: foundUser.id,
+                email: foundUser.email
+            },
+        }, process.env.JWT_SECRET, { expiresIn: '8h' });
+
+        return token;
     }
 }
 

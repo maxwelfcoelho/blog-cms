@@ -4,7 +4,7 @@ const userService = require("../service/user.service");
 
 class UserController {
     async register(req, res) {
-        const { email, password } = req.body;
+        const { firstName, lastName, email, password } = req.body;
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -15,6 +15,8 @@ class UserController {
 
         try {
             await userService.create({
+                firstName,
+                lastName,
                 email,
                 password
             });

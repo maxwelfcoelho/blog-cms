@@ -15,5 +15,7 @@ CREATE TABLE post (
     content VARCHAR(255) NOT NULL,
     createdAt DATETIME,
     updatedAt DATETIME,
-    PRIMARY KEY(id)
+    userId BIGINT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(userId) REFERENCES user(id)
 );

@@ -30,6 +30,14 @@ router.post(
     body("password")
         .isLength({ min: 8 })
         .withMessage("Password should be at least 8 characters"),
+    body("passwordConfirmation").custom((value, { req }) => {
+        if (value !== req.body.password) {
+            throw new Error(
+                'Password confirmation does not match password'
+            );
+        }
+        return true;
+    }),
     userController.login
 );
 

@@ -34,7 +34,7 @@ class UserController {
     }
 
     async login(req, res) {
-        const { email, password } = req.body;
+        const { email, password, passwordConfirmation } = req.body;
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

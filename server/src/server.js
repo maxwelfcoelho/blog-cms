@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const cookieParser = require('cookie-parser');
 
 const routes = [
@@ -15,6 +16,7 @@ class Server {
     }
 
     initConfig() {
+        this.app.use(cors());
         this.app.use(cookieParser());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));

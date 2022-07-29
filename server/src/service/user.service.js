@@ -13,6 +13,8 @@ class UserService {
         const hashedPassword = await bcrypt.hash(userRequest.password, 10);
 
         const user = {
+            firstName: userRequest.firstName,
+            lastName: userRequest.lastName,
             email: userRequest.email,
             password: hashedPassword,
             createdAt: new Date(),

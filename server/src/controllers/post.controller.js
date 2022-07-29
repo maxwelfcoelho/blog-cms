@@ -19,8 +19,16 @@ class PostController {
             });
         }
 
+        try {
+            await postService.createPost({
+                title,
+                content
+            });
 
-        res.status(201).json();
+            res.sendStatus(201);
+        } catch(e) {
+            res.status(400).json({ error: e.message });
+        }
     }
 }
 

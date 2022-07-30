@@ -2,7 +2,7 @@ const postRepository = require("../repository/post.repository");
 
 class PostService {
     async findAllPosts() {
-        return await postRepository.findAll();
+        return await postRepository.findAllWithUser();
     }
 
     async createPost(postRequest) {

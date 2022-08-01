@@ -46,12 +46,7 @@ class UserController {
         try {
             const token = await userService.login({ email, password });
 
-            res.cookie("token", token, {
-                httpOnly: true,
-                maxAge: 60 * 60 * 60
-            })
-
-            res.sendStatus(200);
+            res.status(200).json(token);
         } catch(e) {
             res.status(400).json({ error: e.message });
         }

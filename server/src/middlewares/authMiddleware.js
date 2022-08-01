@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 
 async function authMiddleware(req, res, next) {
-    const cookies = req.cookies;
-    if (!cookies) {
+    const bearer = req.headers["authorization"];
+    if (!bearer) {
         return res.sendStatus(401);
     }
 
-    const token = cookies.token;
+    const token = bearer.slice(7);
 
     try {
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);

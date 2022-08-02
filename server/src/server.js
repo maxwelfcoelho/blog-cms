@@ -4,7 +4,8 @@ const cookieParser = require('cookie-parser');
 
 const routes = [
     require("./routes/user.route"),
-    require("./routes/post.route")
+    require("./routes/post.route"),
+    require("./routes/category.route")
 ];
 
 class Server {

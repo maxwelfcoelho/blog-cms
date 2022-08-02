@@ -23,7 +23,9 @@ CREATE TABLE post (
     content VARCHAR(255) NOT NULL,
     createdAt DATETIME,
     updatedAt DATETIME,
+    categoryId BIGINT NOT NULL,
     userId BIGINT NOT NULL,
     PRIMARY KEY(id),
+    FOREIGN KEY(categoryId) REFERENCES category(id),
     FOREIGN KEY(userId) REFERENCES user(id)
 );

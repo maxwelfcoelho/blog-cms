@@ -9,6 +9,14 @@ CREATE TABLE user (
     PRIMARY KEY(id)
 );
 
+CREATE TABLE category (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    createdAt DATETIME,
+    updatedAt DATETIME,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE post (
     id BIGINT NOT NULL AUTO_INCREMENT,
     title VARCHAR(150) NOT NULL,

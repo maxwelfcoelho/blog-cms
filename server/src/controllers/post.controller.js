@@ -10,7 +10,7 @@ class PostController {
     }
 
     async createPost(req, res) {
-        const { title, content } = req.body;
+        const { title, content, categoryId } = req.body;
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -23,6 +23,7 @@ class PostController {
             await postService.createPost({
                 title,
                 content,
+                categoryId,
                 userId: req.user.id
             });
 

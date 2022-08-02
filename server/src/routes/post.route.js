@@ -28,4 +28,9 @@ router.post(
     postController.createPost
 );
 
+router.delete(
+    "/api/v1/posts/:postId/delete",
+    postController.deletePostById
+);
+
 module.exports = router;

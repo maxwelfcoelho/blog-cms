@@ -6,6 +6,15 @@ class PostService {
         return await postRepository.findAllWithUser();
     }
 
+    async findPostById(postId) {
+        const posts = await postRepository.findById(postId);
+        if (posts[0].length <= 0) {
+            throw new Error(`Post ${postId} not found`); 
+        }
+
+        return posts[0];
+    }
+
     async createPost(postRequest) {
         await categoryService
             .findCategoryById(postRequest.categoryId);
@@ -19,9 +28,14 @@ class PostService {
             userId: postRequest.userId
         };
 
-
         const newPost = await postRepository.create(post);
         return newPost;
+    }
+
+    async deletePostById(postId) {
+        const posts = await this.findPostById(postId);
+
+        return await postRepository.deleteById(postId);
     }
 }
 

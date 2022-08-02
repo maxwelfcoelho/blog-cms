@@ -13,6 +13,12 @@ class PostRepository {
         return rows;
     }
 
+    async findById(id) {
+        const query = "SELECT * FROM post WHERE id = ?";
+        const values = [id];
+        return await pool.query(query, values);
+    }
+
     async create(post) {
         const query = "INSERT INTO post (title, content, createdAt, updatedAt, categoryId, userId) VALUES (?, ?, ?, ?, ?, ?)";
         const values = [

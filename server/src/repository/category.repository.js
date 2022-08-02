@@ -3,7 +3,8 @@ const pool = require("../db");
 class CategoryRepository {
     async findAll() {
         const query = "SELECT * FROM category";
-        return await pool.query(query);
+        const [rows, _] = await pool.query(query);
+        return rows;
     }
 }
 

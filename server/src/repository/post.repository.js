@@ -8,7 +8,7 @@ class PostRepository {
     }
 
     async findAllWithUser() {
-        const query = "SELECT p.id, p.title, p.content, p.createdAt, p.updatedAt, JSON_OBJECT('firstname', u.firstname) AS user FROM post p LEFT JOIN user u on p.userId=u.id GROUP BY p.id";
+        const query = "SELECT p.id, p.title, p.content, p.createdAt,p.updatedAt, JSON_OBJECT('name', c.name) AS category, JSON_OBJECT('firstname', u.firstname) AS user FROM post p LEFT JOIN category c on p.categoryId=c.id LEFT JOIN user u on p.userId=u.id GROUP BY p.id";
         const [rows, _] = await pool.query(query);
         return rows;
     }

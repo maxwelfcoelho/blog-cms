@@ -40,8 +40,17 @@ class PostService {
         return newPost;
     }
 
-    async updatePostById(postId, post) {
+    async updatePostById(postId, postRequest) {
         await this.findPostById(postId);
+
+        const category = await categoryService.findCategoryByName(postRequest.category);
+        
+        const post = {
+            title: postRequest.title,
+            categoryId: category.id,
+            content: postRequest.content,
+            updatedAt: postRequest.updatedAt
+        };
 
         return postRepository.updateById(postId, post); 
     }

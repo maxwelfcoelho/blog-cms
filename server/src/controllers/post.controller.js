@@ -47,7 +47,7 @@ class PostController {
 
     async updatePostById(req, res) {
         const { postId } = req.params;
-        const { title, categoryId, content } = req.body;
+        const { title, category, content } = req.body;
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -59,7 +59,7 @@ class PostController {
         try {
             await postService.updatePostById(postId, {
                 title,
-                categoryId,
+                category,
                 content,
                 updatedAt: new Date()
             });

@@ -40,7 +40,7 @@ router.put(
         .withMessage("Title should be at least length 20")
         .isLength({ max: 150 })
         .withMessage("Title should be at most length 150"),
-    body("categoryId").notEmpty().withMessage("Category id is required"),
+    body("category").notEmpty().withMessage("Category name is required"),
     body("content")
         .notEmpty()
         .withMessage("Content is required")

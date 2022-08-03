@@ -16,7 +16,7 @@ class CategoryService {
     async findCategoryByName(name) {
         const categories = await categoryRepository.findByName(name);
         if (categories.length <= 0) {
-            throw new Error(`Category ${id} not found`);
+            throw new Error(`Category ${name} not found`);
         }
         return categories[0];
 

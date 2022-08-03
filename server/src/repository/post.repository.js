@@ -39,6 +39,13 @@ class PostRepository {
         return await pool.query(query, values);
     }
 
+    async updateById(postId, post) {
+        const query = "UPDATE post SET title = ?, content = ?, categoryId = ?, updatedAt = ? WHERE id = 4";
+        const values = [post.title, post.category, post.content];
+
+        return await pool.query(query, values);
+    }
+
     async deleteById(id) {
         const query = "DELETE FROM post WHERE id = ?";
         const values = [id];

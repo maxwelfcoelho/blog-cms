@@ -13,6 +13,15 @@ class CategoryService {
         return categories[0];
     }
 
+    async findCategoryByName(name) {
+        const categories = await categoryRepository.findByName(name);
+        if (categories.length <= 0) {
+            throw new Error(`Category ${id} not found`);
+        }
+        return categories[0];
+
+    }
+
     async createCategory(categoryRequest) {
         const category = {
             name: categoryRequest.name,

@@ -26,6 +26,13 @@ class CategoryRepository {
         const values = [category.name, category.createdAt, category.updatedAt];
         return await pool.query(query, values);
     }
+
+    async deleteById(categoryId) {
+        const query = "DELETE FROM category WHERE id = ?";
+        const values = [categoryId];
+
+        return await pool.query(query, values);
+    }
 }
 
 module.exports = new CategoryRepository();

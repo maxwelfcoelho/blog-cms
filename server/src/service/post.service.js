@@ -15,6 +15,14 @@ class PostService {
         return posts[0];
     }
 
+    async findPostByIdWithCategory(postId) {
+        const post = await postRepository.findByIdWithCategory(postId);
+        if (post.length <= 0) {
+            throw new Error(`Post ${postId} not found`);
+        }
+        return post[0];
+    }
+
     async createPost(postRequest) {
         await categoryService
             .findCategoryById(postRequest.categoryId);

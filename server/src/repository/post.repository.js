@@ -18,6 +18,13 @@ class PostRepository {
         const values = [id];
         return await pool.query(query, values);
     }
+    
+    async findByIdWithCategory(id) {
+        const query = "SELECT p.id, p.title, p.content, JSON_OBJECT('name', c.name) AS category FROM post p INNER JOIN category c ON p.categoryId = c.id WHERE p.id = ?";
+        const values = [id];
+        const [rows, _] = await pool.query(query, values);
+        return rows;
+    }
 
     async create(post) {
         const query = "INSERT INTO post (title, content, createdAt, updatedAt, categoryId, userId) VALUES (?, ?, ?, ?, ?, ?)";

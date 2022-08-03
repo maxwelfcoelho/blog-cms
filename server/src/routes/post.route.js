@@ -8,6 +8,8 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get("/api/v1/posts", postController.findAllPosts);
 
+router.get("/api/v1/posts/:postId", postController.findPostByIdWithCategory);
+
 router.post(
     "/api/v1/posts/new",
     authMiddleware,
@@ -30,6 +32,7 @@ router.post(
 
 router.delete(
     "/api/v1/posts/:postId/delete",
+    authMiddleware,
     postController.deletePostById
 );
 

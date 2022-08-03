@@ -9,6 +9,18 @@ class PostController {
         res.status(200).json(posts);
     }
 
+    async findPostByIdWithCategory(req, res) {
+        const { postId } = req.params;
+
+        try {
+            const post = await postService.findPostByIdWithCategory(postId);
+
+            res.status(200).json(post);
+        } catch(e) {
+            res.status(400).json({ error: e.message });
+        }
+    }
+
     async createPost(req, res) {
         const { title, content, categoryId } = req.body;
 

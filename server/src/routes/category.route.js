@@ -17,6 +17,7 @@ router.post(
 
 router.delete(
     "/api/v1/categories/:categoryId/delete",
+    authMiddleware,
     categoryController.deleteCategoryById);
 
 module.exports = router;

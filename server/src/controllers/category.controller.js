@@ -25,6 +25,18 @@ class CategoryController {
 
         res.sendStatus(201);
     }
+
+    async deleteCategoryById(req, res) {
+        const { categoryId } = req.params;
+
+        try {
+            await categoryService.deleteCategoryById(categoryId);
+
+            res.sendStatus(200);
+        } catch(e) {
+            res.status(400).json({ error: e.message });
+        }
+    }
 }
 
 module.exports = new CategoryController();

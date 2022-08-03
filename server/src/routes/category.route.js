@@ -15,4 +15,8 @@ router.post(
     categoryController.createCategory
 );
 
+router.delete(
+    "/api/v1/categories/:categoryId/delete",
+    categoryController.deleteCategoryById);
+
 module.exports = router;

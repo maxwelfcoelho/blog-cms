@@ -31,6 +31,12 @@ class CategoryService {
 
         return await categoryRepository.create(category);
     }
+
+    async deleteCategoryById(categoryId) {
+        await this.findCategoryById(categoryId);
+
+        return categoryRepository.deleteById(categoryId);
+    }
 }
 
 module.exports = new CategoryService();

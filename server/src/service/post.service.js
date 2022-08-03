@@ -40,6 +40,12 @@ class PostService {
         return newPost;
     }
 
+    async updatePostById(postId, post) {
+        await this.findPostById(postId);
+
+        return postRepository.updateById(postId, post); 
+    }
+
     async deletePostById(postId) {
         const posts = await this.findPostById(postId);
 

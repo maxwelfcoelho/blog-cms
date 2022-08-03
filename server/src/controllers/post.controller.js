@@ -45,6 +45,31 @@ class PostController {
         }
     }
 
+    async updatePostById(req, res) {
+        const { postId } = req.params;
+        const { title, categoryId, content } = req.body;
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ 
+                errors: errors.array().map(error => error.msg)
+            });
+        }
+
+        try {
+            await postService.updatePostById(postId, {
+                title,
+                categoryId,
+                content,
+                updatedAt: new Date()
+            });
+
+            res.sendStatus(200);
+        } catch(e) {
+            res.status(400).json({ error: e.message });
+        }
+    }
+
     async deletePostById(req, res) {
         const { postId } = req.params;
 

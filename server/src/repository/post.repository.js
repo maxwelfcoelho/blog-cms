@@ -40,9 +40,8 @@ class PostRepository {
     }
 
     async updateById(postId, post) {
-        const query = "UPDATE post SET title = ?, content = ?, categoryId = ?, updatedAt = ? WHERE id = 4";
-        const values = [post.title, post.category, post.content];
-
+        const query = "UPDATE post SET title = ?, content = ?, categoryId = ?, updatedAt = ? WHERE id = ?";
+        const values = [post.title, post.content, post.categoryId, post.updatedAt, postId];
         return await pool.query(query, values);
     }
 

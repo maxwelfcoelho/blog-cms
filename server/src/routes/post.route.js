@@ -30,6 +30,27 @@ router.post(
     postController.createPost
 );
 
+router.put(
+    "/api/v1/posts/:postId/update",
+    body("title")
+        .notEmpty()
+        .withMessage("Title is required")
+        .isLength({ min: 20 })
+        .withMessage("Title should be at least length 20")
+        .isLength({ max: 150 })
+        .withMessage("Title should be at most length 150"),
+    body("categoryId").notEmpty().withMessage("Category id is required"),
+    body("content")
+        .notEmpty()
+        .withMessage("Content is required")
+        .isLength({ min: 50 })
+        .withMessage("Title should be at least length 50")
+        .isLength({ max: 255 })
+        .withMessage("Title should be at most length 255"),
+
+    postController.updatePostById
+);
+
 router.delete(
     "/api/v1/posts/:postId/delete",
     authMiddleware,

@@ -32,6 +32,7 @@ router.post(
 
 router.put(
     "/api/v1/posts/:postId/update",
+    authMiddleware,
     body("title")
         .notEmpty()
         .withMessage("Title is required")
